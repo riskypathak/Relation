@@ -1,0 +1,20 @@
+﻿<Window x:Class="Realtion.Person"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:per="clr-namespace:PersonViewModel"
+        xmlns:p="clr-namespace:PersonViewModel"
+        Title="Person" Height="300" Width="300">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="22,35,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="22,87,0,0" TextWrapping="Wrap" Text="Gender:" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="114,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="114,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="114,229,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock HorizontalAlignment="Left" Margin="22,126,0,0" TextWrapping="Wrap" Text="Relationship:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="22,87,0,0" TextWrapping="Wrap" Text="Gender:" VerticalAlignment="Top" RenderTransformOrigin="0.512,4.125"/>
+        <TextBlock HorizontalAlignment="Left" Margin="22,177,0,0" TextWrapping="Wrap" Text="Person:" VerticalAlignment="Top" RenderTransformOrigin="0.512,4.125"/>
+        <ComboBox HorizontalAlignment="Left" Margin="114,126,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="114,177,0,0" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>
