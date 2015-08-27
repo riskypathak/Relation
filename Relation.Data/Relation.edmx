@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RelationModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="RelationModelStoreContainer">
+          <EntitySet Name="Person" EntityType="RelationModel.Store.Person" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Relationship" EntityType="RelationModel.Store.Relationship" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RelationShipType" EntityType="RelationModel.Store.RelationShipType" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Relations__First__145C0A3F" Association="RelationModel.Store.FK__Relations__First__145C0A3F">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Relationship" EntitySet="Relationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Relations__Relat__15502E78" Association="RelationModel.Store.FK__Relations__Relat__15502E78">
+            <End Role="RelationShipType" EntitySet="RelationShipType" />
+            <End Role="Relationship" EntitySet="Relationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Relations__Secon__164452B1" Association="RelationModel.Store.FK__Relations__Secon__164452B1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Relationship" EntitySet="Relationship" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="MaidenName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Relationship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstPersonID" Type="int" />
+          <Property Name="RelationTypeID" Type="int" />
+          <Property Name="SecondPersonID" Type="int" />
+        </EntityType>
+        <EntityType Name="RelationShipType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Relations__First__145C0A3F">
+          <End Role="Person" Type="RelationModel.Store.Person" Multiplicity="0..1" />
+          <End Role="Relationship" Type="RelationModel.Store.Relationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="FirstPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Relations__Relat__15502E78">
+          <End Role="RelationShipType" Type="RelationModel.Store.RelationShipType" Multiplicity="0..1" />
+          <End Role="Relationship" Type="RelationModel.Store.Relationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RelationShipType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="RelationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Relations__Secon__164452B1">
+          <End Role="Person" Type="RelationModel.Store.Person" Multiplicity="0..1" />
+          <End Role="Relationship" Type="RelationModel.Store.Relationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="SecondPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RelationModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RelationEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="People" EntityType="RelationModel.Person" />
+          <EntitySet Name="Relationships" EntityType="RelationModel.Relationship" />
+          <EntitySet Name="RelationShipTypes" EntityType="RelationModel.RelationShipType" />
+          <AssociationSet Name="FK__Relations__First__145C0A3F" Association="RelationModel.FK__Relations__First__145C0A3F">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Relationship" EntitySet="Relationships" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Relations__Secon__164452B1" Association="RelationModel.FK__Relations__Secon__164452B1">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Relationship" EntitySet="Relationships" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Relations__Relat__15502E78" Association="RelationModel.FK__Relations__Relat__15502E78">
+            <End Role="RelationShipType" EntitySet="RelationShipTypes" />
+            <End Role="Relationship" EntitySet="Relationships" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MaidenName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Relationships" Relationship="RelationModel.FK__Relations__First__145C0A3F" FromRole="Person" ToRole="Relationship" />
+          <NavigationProperty Name="Relationships1" Relationship="RelationModel.FK__Relations__Secon__164452B1" FromRole="Person" ToRole="Relationship" />
+        </EntityType>
+        <EntityType Name="Relationship">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstPersonID" Type="Int32" />
+          <Property Name="RelationTypeID" Type="Int32" />
+          <Property Name="SecondPersonID" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="RelationModel.FK__Relations__First__145C0A3F" FromRole="Relationship" ToRole="Person" />
+          <NavigationProperty Name="Person1" Relationship="RelationModel.FK__Relations__Secon__164452B1" FromRole="Relationship" ToRole="Person" />
+          <NavigationProperty Name="RelationShipType" Relationship="RelationModel.FK__Relations__Relat__15502E78" FromRole="Relationship" ToRole="RelationShipType" />
+        </EntityType>
+        <EntityType Name="RelationShipType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Relationships" Relationship="RelationModel.FK__Relations__Relat__15502E78" FromRole="RelationShipType" ToRole="Relationship" />
+        </EntityType>
+        <Association Name="FK__Relations__First__145C0A3F">
+          <End Role="Person" Type="RelationModel.Person" Multiplicity="0..1" />
+          <End Role="Relationship" Type="RelationModel.Relationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="FirstPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Relations__Secon__164452B1">
+          <End Role="Person" Type="RelationModel.Person" Multiplicity="0..1" />
+          <End Role="Relationship" Type="RelationModel.Relationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="SecondPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Relations__Relat__15502E78">
+          <End Role="RelationShipType" Type="RelationModel.RelationShipType" Multiplicity="0..1" />
+          <End Role="Relationship" Type="RelationModel.Relationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RelationShipType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Relationship">
+              <PropertyRef Name="RelationTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RelationModelStoreContainer" CdmEntityContainer="RelationEntities">
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="RelationModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="MaidenName" ColumnName="MaidenName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Relationships">
+            <EntityTypeMapping TypeName="RelationModel.Relationship">
+              <MappingFragment StoreEntitySet="Relationship">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstPersonID" ColumnName="FirstPersonID" />
+                <ScalarProperty Name="RelationTypeID" ColumnName="RelationTypeID" />
+                <ScalarProperty Name="SecondPersonID" ColumnName="SecondPersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelationShipTypes">
+            <EntityTypeMapping TypeName="RelationModel.RelationShipType">
+              <MappingFragment StoreEntitySet="RelationShipType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

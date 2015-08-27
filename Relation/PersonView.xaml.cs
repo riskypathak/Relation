@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Realtion
 {
     /// <summary>
-    /// Interaction logic for Person.xaml
+    /// Interaction logic for PersonView.xaml
     /// </summary>
-    public partial class Person : Window
+    public partial class PersonView : Window
     {
-        public Person()
+        public PersonView()
         {
             InitializeComponent();
         }
