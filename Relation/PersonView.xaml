@@ -1,19 +1,41 @@
 ﻿<Window x:Class="Realtion.PersonView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       xmlns:ViewModels="clr-namespace:Realtion.ViewModel"
+        xmlns:VM="clr-namespace:Realtion.ViewModel"
         Title="PersonView" Height="300" Width="300">
+    <Window.DataContext>
+        <VM:PersonViewModel />
+    </Window.DataContext>
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="22,35,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="22,87,0,0" TextWrapping="Wrap" Text="Gender:" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="114,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="114,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <!--<Button Content="Add" Command="{Binding AddButtonCommand}" HorizontalAlignment="Left" Margin="114,229,0,0" VerticalAlignment="Top" Width="75"/>-->
-        <TextBlock HorizontalAlignment="Left" Margin="22,126,0,0" TextWrapping="Wrap" Text="Relationship:" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="22,87,0,0" TextWrapping="Wrap" Text="Gender:" VerticalAlignment="Top" RenderTransformOrigin="0.512,4.125"/>
-        <TextBlock HorizontalAlignment="Left" Margin="22,177,0,0" TextWrapping="Wrap" Text="Person:" VerticalAlignment="Top" RenderTransformOrigin="0.512,4.125"/>
-        <ComboBox HorizontalAlignment="Left" Margin="114,126,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="114,177,0,0" VerticalAlignment="Top" Width="120"/>
+        <Grid.RowDefinitions>
+            <RowDefinition RowDefinition.Height="Auto" />
+            <RowDefinition RowDefinition.Height="Auto" />
+            <RowDefinition RowDefinition.Height="Auto" />
+            <RowDefinition RowDefinition.Height="Auto" />
+            <RowDefinition RowDefinition.Height="Auto" />
+            <RowDefinition RowDefinition.Height="Auto" />
+            <RowDefinition RowDefinition.Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition ColumnDefinition.Width="Auto" />
+            <ColumnDefinition ColumnDefinition.Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="5" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0" Margin="5" TextWrapping="Wrap" Text="Maiden Name:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0" Margin="5" TextWrapping="Wrap" Text="Last Name:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0" Margin="5" TextWrapping="Wrap" Text="Gender:" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" Height="23" TextBox.Text="{Binding PersonFirstName}"  Margin="5" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Height="23" TextBox.Text="{Binding PersonMaidenName}"  Margin="5" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" Height="23" TextBox.Text="{Binding PersonLastName}"  Margin="5" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <!--<TextBox HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>-->
+        <ComboBox HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Top" ItemsControl.DisplayMemberPath="GenderName" ItemsControl.ItemsSource="{Binding GenderList}" Selector.SelectedValue="{Binding SelectedGender,Mode=TwoWay}" Width="120"/>
 
+        <!--<ComboBox HorizontalAlignment="Left" Margin="114,177,0,0" VerticalAlignment="Top" ItemsControl.DisplayMemberPath="PersonName" ItemsControl.ItemsSource="{Binding PersonList}" Selector.SelectedValue="{Binding SelectedPerson,Mode=TwoWay}" Width="120"/>-->
+        <TextBlock HorizontalAlignment="Left" Margin="5" Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" Text="Relationship:" VerticalAlignment="Top"/>
+        <!--<TextBlock HorizontalAlignment="Left" Margin="22,87,0,0" TextWrapping="Wrap" Text="Gender:" VerticalAlignment="Top" RenderTransformOrigin="0.512,4.125"/>-->
+        <TextBlock HorizontalAlignment="Left" Margin="5" Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" Text="Person:" VerticalAlignment="Top" RenderTransformOrigin="0.512,4.125"/>
+        <ComboBox HorizontalAlignment="Left" Margin="5" Grid.Row="4" Grid.Column="1"  ItemsControl.DisplayMemberPath="RelationName" ItemsControl.ItemsSource="{Binding RelationList}" Selector.SelectedValue="{Binding SelectedRelation,Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="5" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" ItemsControl.DisplayMemberPath="PersonName" ItemsControl.ItemsSource="{Binding PersonList}" Selector.SelectedValue="{Binding SelectedPerson,Mode=TwoWay}" Width="120"/>
+        <Button Content="Add" Command="{Binding AddButtonCommand}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
