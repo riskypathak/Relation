@@ -19,3 +19,7 @@ D:\All Projects\Risky Pathak\Relation\Code\Relation\Relation\obj\Debug\Realtion.
 D:\All Projects\Risky Pathak\Relation\Code\Relation\Relation\obj\Debug\Realtion.pdb
 D:\All Projects\Risky Pathak\Relation\Code\Relation\Relation\bin\Debug\Relation.Data.pdb
 D:\All Projects\Risky Pathak\Relation\Code\Relation\Relation\obj\Debug\RealtionWPF.csprojResolveAssemblyReference.cache
+D:\All Projects\Risky Pathak\Relation\Code\Relation\Relation\obj\Debug\RelationView.baml
+D:\All Projects\Risky Pathak\Relation\Code\Relation\Relation\obj\Debug\RelationView.g.cs
+D:\All Projects\Risky Pathak\Relation\Code\Relation\Relation\obj\Debug\RealtionNetworkView.baml
+D:\All Projects\Risky Pathak\Relation\Code\Relation\Relation\obj\Debug\RealtionNetworkView.g.cs

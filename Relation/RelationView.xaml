@@ -4,7 +4,7 @@
         xmlns:VM="clr-namespace:Realtion.ViewModel"
         Title="RelationView" Height="300" Width="300">
     <Window.DataContext>
-        <VM:RelationViewModel />
+        <VM:RelationViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
