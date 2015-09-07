@@ -1,13 +1,14 @@
-﻿<Window x:Class="Realtion.PersonView"
+﻿<UserControl x:Class="Realtion.PersonView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:VM="clr-namespace:Realtion.ViewModel"
-        Title="PersonView" Height="300" Width="300">
-    <Window.DataContext>
+        Height="300" Width="300">
+    <UserControl.DataContext>
         <VM:PersonViewModel />
-    </Window.DataContext>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition RowDefinition.Height="Auto" />
             <RowDefinition RowDefinition.Height="Auto" />
             <RowDefinition RowDefinition.Height="Auto" />
             <RowDefinition RowDefinition.Height="Auto" />
@@ -37,5 +38,7 @@
         <ComboBox HorizontalAlignment="Left" SelectedIndex="0" Margin="5" Grid.Row="4" Grid.Column="1"  ItemsControl.DisplayMemberPath="RelationName" ItemsControl.ItemsSource="{Binding RelationList}" Selector.SelectedValue="{Binding SelectedRelation,Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
         <ComboBox HorizontalAlignment="Left" SelectedIndex="0" Margin="5" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" ItemsControl.DisplayMemberPath="PersonName" ItemsControl.ItemsSource="{Binding PersonList}" Selector.SelectedValue="{Binding SelectedPerson,Mode=TwoWay}" Width="120"/>
         <Button Content="Add" Command="{Binding AddButtonCommand}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="75"/>
+        <TextBlock HorizontalAlignment="Left" Margin="5" Grid.Row="6" Grid.Column="0" Text="{Binding Message,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" />
+
     </Grid>
-</Window>
+</UserControl>

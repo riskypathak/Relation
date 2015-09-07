@@ -17,7 +17,7 @@ namespace Realtion
     /// <summary>
     /// Interaction logic for PersonView.xaml
     /// </summary>
-    public partial class PersonView : Window
+    public partial class PersonView : UserControl
     {
         public PersonView()
         {

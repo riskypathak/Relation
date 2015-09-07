@@ -1,13 +1,14 @@
-﻿<Window x:Class="Realtion.RelationView"
+﻿<UserControl x:Class="Realtion.RelationView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:VM="clr-namespace:Realtion.ViewModel"
-        Title="RelationView" Height="300" Width="300">
-    <Window.DataContext>
+        Height="300" Width="300">
+    <UserControl.DataContext>
         <VM:RelationViewModel/>
-    </Window.DataContext>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition RowDefinition.Height="Auto" />
             <RowDefinition RowDefinition.Height="Auto" />
             <RowDefinition RowDefinition.Height="Auto" />
             <RowDefinition RowDefinition.Height="Auto" />
@@ -24,6 +25,6 @@
         <ComboBox Grid.Row="1"  Grid.Column="1" HorizontalAlignment="Left" Margin="5,10" SelectedIndex="0"  VerticalAlignment="Top" ItemsControl.DisplayMemberPath="RelationName" ItemsControl.ItemsSource="{Binding RelationList}" Selector.SelectedValue="{Binding SelectedRelation,Mode=TwoWay}" Width="120"/>
         <ComboBox Grid.Row="2"  Grid.Column="1" HorizontalAlignment="Left" Margin="5,10" SelectedIndex="0"  VerticalAlignment="Top" ItemsControl.DisplayMemberPath="PersonName" ItemsControl.ItemsSource="{Binding SecondPersonList}" Selector.SelectedValue="{Binding SecondSelectedPerson,Mode=TwoWay}" Width="120"/>
         <Button Grid.Row="3" Command="{Binding AddRelationButtonCommand}"  Grid.Column="1" Content="Add Relation"  HorizontalAlignment="Left" Margin="5,10"  VerticalAlignment="Top" Width="75"/>
-
+        <TextBlock HorizontalAlignment="Left" Margin="5" Grid.Row="4" Grid.Column="0" Text="{Binding Message,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" />
     </Grid>
-</Window>
+</UserControl>

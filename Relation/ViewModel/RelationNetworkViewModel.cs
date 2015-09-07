@@ -13,9 +13,21 @@ namespace Realtion.ViewModel
     public class RelationNetworkViewModel : INotifyPropertyChanged
     {
         private readonly ObservableCollection<PersonModel> _personList = new ObservableCollection<PersonModel>();
+
+        private string _fatherName;
+        private string _motherName;
+        private string _self;
+        private string _spouseName;
+
+
         public RelationNetworkViewModel()
         {
             GetPersonList();
+            _fatherName = "Aa";
+            _motherName = "Bs";
+            _self = "Cs";
+            _spouseName = "Dq";
+
         }
         public ObservableCollection<PersonModel> PersonList
         {
@@ -36,9 +48,57 @@ namespace Realtion.ViewModel
             set
             {
                 this._selectedPerson = value;
+                PopulateNetworkView();
                 OnPropertyChanged("SelectedPerson");
             }
         }
+
+        public string FatherName
+        {
+
+            get { return _fatherName; }
+            set
+            {
+                _fatherName = value;
+                OnPropertyChanged("FatherName");
+            }
+
+        }
+        public string MotherName
+        {
+
+            get { return _motherName; }
+            set
+            {
+                _motherName = value;
+                OnPropertyChanged("MotherName");
+            }
+
+        }
+        public string SelfName
+        {
+
+            get { return _self; }
+            set
+            {
+                _self = value;
+                OnPropertyChanged("SelfName");
+            }
+
+        }
+        public string SpouseName
+        {
+
+            get { return _spouseName; }
+            set
+            {
+                _spouseName = value;
+                OnPropertyChanged("SpouseName");
+            }
+
+        }
+
+
         public void GetPersonList()
         {
             using (RelationEntities dbEntities = new RelationEntities())
@@ -84,6 +144,11 @@ namespace Realtion.ViewModel
 
             }
            
+        }
+
+        public void SetRealtionValues()
+        {
+
         }
     }
 }

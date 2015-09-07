@@ -73,6 +73,17 @@ namespace Realtion.ViewModel
             }
         }
 
+        public string _message;
+        public string Message
+        {
+            get { return this._message; }
+            set
+            {
+               this._message = value;
+                OnPropertyChanged("Message");
+            }
+        }
+        
 
 
         public PersonViewModel()
@@ -227,29 +238,39 @@ namespace Realtion.ViewModel
         }
         public void AddRecord(object obj)
         {
-            using (RelationEntities dbEntities = new RelationEntities())
+            try
             {
-                /*** ADD PERSON **/
-                perObject.Gender = _selectedGender.GenderName;
-                perObject.Name = PersonFirstName;
-                perObject.MaidenName = PersonMaidenName;
-                perObject.LastName = PersonLastName;
-                dbEntities.People.Add(perObject);
-                dbEntities.SaveChanges();
-                /***END***/
+                using (RelationEntities dbEntities = new RelationEntities())
+                {
+                    /*** ADD PERSON **/
+                    perObject.Gender = _selectedGender.GenderName;
+                    perObject.Name = PersonFirstName;
+                    perObject.MaidenName = PersonMaidenName;
+                    perObject.LastName = PersonLastName;
+                    dbEntities.People.Add(perObject);
+                    dbEntities.SaveChanges();
+                    /***END***/
 
-                /***ADD RELATION ***/
-                var relation = new Relationship();
-                relation.RelationTypeID = _selectedRelation.RelationId;
-                relation.FirstPersonID = perObject.PersonID;
-                relation.SecondPersonID = _selectedPerson.PersonId;
-                dbEntities.Relationships.Add(relation);
-                dbEntities.SaveChanges();
-                /****END**/
+                    /***ADD RELATION ***/
+                    var relation = new Relationship();
+                    relation.RelationTypeID = _selectedRelation.RelationId;
+                    relation.FirstPersonID = perObject.PersonID;
+                    relation.SecondPersonID = _selectedPerson.PersonId;
+                    dbEntities.Relationships.Add(relation);
+                    dbEntities.SaveChanges();
+                    /****END**/
 
-                ClearControls();
+                    ClearControls();
+                    this.Message= "Person Added Successfully.";
 
+                }
             }
+            catch (Exception ex)
+            {
+
+                this.Message = ex.Message;
+            }
+            
         }
         private void ClearControls()
         {

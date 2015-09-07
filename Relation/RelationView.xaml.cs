@@ -17,7 +17,7 @@ namespace Realtion
     /// <summary>
     /// Interaction logic for RelationView.xaml
     /// </summary>
-    public partial class RelationView : Window
+    public partial class RelationView : UserControl
     {
         public RelationView()
         {

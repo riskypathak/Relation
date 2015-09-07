@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace Realtion.ViewModel
 {
-    public class RelationViewModel
+    public class RelationViewModel : INotifyPropertyChanged
     {
         private readonly ObservableCollection<PersonModel> _personList = new ObservableCollection<PersonModel>();
         private PersonModel _selectedPerson;
@@ -26,11 +26,28 @@ namespace Realtion.ViewModel
         private readonly ICommand _addRelationCommand;
         public RelationViewModel()
         {
-           
+
             PopulatePerson();
             PopulateRelations();
             _addRelationCommand = new RelayCommand(AddRelation, CanAdd);
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public string _message;
+        public string Message
+        {
+            get { return this._message; }
+            set
+            {
+                this._message = value;
+                OnPropertyChanged("Message");
+            }
+        }
+
 
         #region Relationship Code
         public ObservableCollection<RelationShipModel> RelationList
@@ -127,7 +144,7 @@ namespace Realtion.ViewModel
                 {
                     PersonModel item = new PersonModel
                     {
-                        PersonName =relation.PersonID+"_"+relation.Name,
+                        PersonName = relation.PersonID + "_" + relation.Name,
                         PersonId = Convert.ToInt32(relation.PersonID)
                     };
                     _personList.Add(item);
@@ -149,14 +166,24 @@ namespace Realtion.ViewModel
         {
             using (RelationEntities dbEntities = new RelationEntities())
             {
-                /***ADD RELATION ***/
-                var relation = new Relationship();
-                relation.RelationTypeID = _selectedRelation.RelationId;
-                relation.FirstPersonID = _selectedPerson.PersonId;
-                relation.SecondPersonID = _secondSelectedPerson.PersonId;
-                dbEntities.Relationships.Add(relation);
-                dbEntities.SaveChanges();
-                /****END**/
+                try
+                {
+                    /***ADD RELATION ***/
+                    var relation = new Relationship();
+                    relation.RelationTypeID = _selectedRelation.RelationId;
+                    relation.FirstPersonID = _selectedPerson.PersonId;
+                    relation.SecondPersonID = _secondSelectedPerson.PersonId;
+                    dbEntities.Relationships.Add(relation);
+                    dbEntities.SaveChanges();
+                    /****END**/
+                    this.Message = "Relation Added Successfully.";
+                }
+                catch (Exception ex)
+                {
+
+                    this.Message = ex.Message;
+                }
+
             }
 
         }
